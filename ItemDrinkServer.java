@@ -1,4 +1,4 @@
-package nurseangel.DrinkServer;
+package mods.nurseangel.drinkserver;
 
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -18,8 +18,10 @@ public class ItemDrinkServer extends ItemBlock {
 	}
 
 	/**
-	 * メタデータ(=subType)を返す <br />
-	 * ブロックの設置時に使用
+	 * ブロック設置時のメタデータ。指定しないと0
+	 *
+	 * @param int アイテムのダメージ値
+	 * @return int メタデータ
 	 */
 	@Override
 	public int getMetadata(int i) {
@@ -27,20 +29,16 @@ public class ItemDrinkServer extends ItemBlock {
 	}
 
 	/**
-	 * 内部的ブロックの名前を返す<br />
-	 * メタデータごとに名前を設定する場合必須<br />
-	 * getLocalItemNameのほうはとりあえず置いてるけど不明
+	 * 内部的ブロックの名前を返す
 	 *
+	 * @param ItenStack
+	 * @return String
 	 */
 	@Override
-	public String getItemNameIS(ItemStack itemstack) {
+	public String getUnlocalizedName(ItemStack itemstack) {
 		int i = itemstack.getItemDamage();
-		return (new StringBuilder()).append(getItemName()).append(i).toString();
+		return (new StringBuilder()).append(getUnlocalizedName()).append(i).toString();
+
 	}
 
-	@Override
-	public String getLocalItemName(ItemStack itemstack) {
-		int i = itemstack.getItemDamage();
-		return (new StringBuilder()).append(getItemName()).append(i).toString();
-	}
 }

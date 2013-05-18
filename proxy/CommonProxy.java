@@ -1,8 +1,4 @@
-package nurseangel.DrinkServer.proxy;
+package mods.nurseangel.drinkserver.proxy;
 
-public class CommonProxy
-{
-    public void registerRenderers()
-    {
-    }
+public class CommonProxy {
 }
