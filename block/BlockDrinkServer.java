@@ -1,10 +1,8 @@
 package mods.nurseangel.drinkserver.block;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-import mods.nurseangel.drinkserver.ModDrinkServer;
+import mods.nurseangel.drinkserver.Config;
 import mods.nurseangel.drinkserver.Reference;
 import mods.nurseangel.drinkserver.data.IServer;
 import mods.nurseangel.drinkserver.data.item.IServerItem;
@@ -76,7 +74,8 @@ public class BlockDrinkServer extends Block {
 		// メタデータを取得
 		int metaData = world.getBlockMetadata(i, j, k);
 		int metaNum = metaData / 4;
-		//message("metaData:" + Integer.toString(metaData) + "metaNum:" + Integer.toString(metaNum));
+		// message("metaData:" + Integer.toString(metaData) + "metaNum:" +
+		// Integer.toString(metaNum));
 
 		// ブロックに対応したアイテムデータ
 		IServerItem dataItem = drinkServerData.getItemList().get(metaNum);
@@ -128,7 +127,7 @@ public class BlockDrinkServer extends Block {
 		for (IServerItem serverItem : drinkServerData.getItemList().values()) {
 
 			// 素材名からアイコンファイル名を作成
-			String texturePath = Reference.TEXTURE_PATH + serverItem.getName() + "Server";
+			String texturePath = Reference.TEXTURE_PATH + serverItem.getName().replaceAll("[ 　]", "") + "Server";
 
 			// 下上東西南北:012345 / 6-11 / 12-17 / 18-23
 			for (int i = 0; i <= 5; i++) {
@@ -217,7 +216,7 @@ public class BlockDrinkServer extends Block {
 	 * @param str
 	 */
 	protected void message(String str) {
-		if (ModDrinkServer.isTest) {
+		if (Config.isTest) {
 			if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 				FMLClientHandler.instance().getClient().thePlayer.addChatMessage(str);
 			}

@@ -9,7 +9,7 @@ public class Milk extends AbstractItem {
 
 	{
 		itemName = "Milk";
-		materialItem = Item.bucketMilk;
+		materialItem = new ItemStack(Item.bucketMilk);
 	}
 
 	/**

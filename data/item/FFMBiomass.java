@@ -1,6 +1,7 @@
 package mods.nurseangel.drinkserver.data.item;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -14,7 +15,7 @@ public class FFMBiomass extends AbstractItem {
 	{
 		try {
 			itemName = "Biomass";
-			materialItem = forestry.api.core.ItemInterface.getItem("bucketBiomass").getItem();
+			materialItem = forestry.api.core.ItemInterface.getItem("bucketBiomass");
 		} catch (Exception e) {
 		}
 	}

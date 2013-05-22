@@ -1,5 +1,6 @@
 package mods.nurseangel.drinkserver.data.item;
 
+import thermalexpansion.api.item.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,7 +10,7 @@ public class Lava extends AbstractItem {
 
 	{
 		itemName = "Lava";
-		materialItem = Item.bucketLava;
+		materialItem = new ItemStack(Item.bucketLava);
 	}
 
 	/**

@@ -14,7 +14,8 @@ public class BCFuel extends AbstractItem {
 	{
 		try {
 			itemName = "Fuel";
-			materialItem = (Item) Class.forName("buildcraft.BuildCraftEnergy").getDeclaredField("bucketFuel").get(null);
+			Item item = (Item) Class.forName("buildcraft.BuildCraftEnergy").getDeclaredField("bucketFuel").get(null);
+			materialItem = new ItemStack(item);
 		} catch (Exception e) {
 		}
 	}

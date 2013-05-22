@@ -54,9 +54,9 @@ public interface IServerItem {
 
 	/**
 	 * この素材アイテム自身を帰す
-	 * @return Item
+	 * @return ItemStack
 	 */
-	public Item getMaterial();
+	public ItemStack getMaterial();
 
 	/**
 	 * 手持ちアイテムを一個減らして他のアイテムを一個追加するだけ
@@ -65,6 +65,6 @@ public interface IServerItem {
 	 * @param minusItem
 	 * @param plusItem
 	 */
-	public void changeItem(EntityPlayer entityplayer, ItemStack minusItem, Item plusItem);
+	public void changeItem(EntityPlayer entityplayer, ItemStack minusItem, ItemStack plusItem);
 
 }

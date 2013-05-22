@@ -25,4 +25,7 @@ public class Vanilla extends AbstractServer {
 		itemList.put(2, new Lava());
 	}
 
+	public static boolean isExist() {
+		return true;
+	}
 }

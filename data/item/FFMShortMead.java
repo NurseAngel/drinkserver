@@ -11,7 +11,7 @@ public class FFMShortMead extends AbstractItem {
 	{
 		try {
 			itemName = "ShortMead";
-			materialItem = forestry.api.core.ItemInterface.getItem("shortMead").getItem();
+			materialItem = forestry.api.core.ItemInterface.getItem("shortMead");
 		} catch (Exception e) {
 		}
 	}
@@ -26,7 +26,6 @@ public class FFMShortMead extends AbstractItem {
 	public void onBlockRightClickHand(World world, EntityPlayer entityplayer, ItemStack itemstack) {
 		entityplayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 400, 1));
 	}
-
 
 	// バケツは素手と同じ
 	@Override

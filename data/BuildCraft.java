@@ -15,4 +15,16 @@ public class BuildCraft extends AbstractServer {
 		itemList.put(1, new BCFuel());
 	}
 
+	/**
+	 * BuildCraftが存在するかチェック<br />
+	 * FMLCommonHandler/ModContainerあたりから取ってこれそうな気がしないでもないがよくわからん
+	 */
+	public static boolean isExist() {
+		try {
+			Class.forName("buildcraft.BuildCraftEnergy");
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }

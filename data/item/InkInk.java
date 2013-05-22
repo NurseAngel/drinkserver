@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 
 /**
  * InkModのイカスミバケツ<br />
- * http://forum.minecraftuser.jp/viewtopic.php?f=13&t=3397
  *
  * @author ayamitsu
  *
@@ -19,14 +18,15 @@ public class InkInk extends AbstractItem {
 	{
 		try {
 			itemName = "Ink";
-			materialItem = (Item) Class.forName("ayamitsu.ink.InkMod").getDeclaredField("bucketInk").get(null);
+			Item item = (Item) Class.forName("ayamitsu.ink.InkMod").getDeclaredField("bucketInk").get(null);
+			materialItem = new ItemStack(item);
 		} catch (Exception e) {
 		}
 	}
 
 	@Override
 	public void onBlockRightClickHand(World world, EntityPlayer entityplayer, ItemStack itemstack) {
-		entityplayer.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 300, 1));
+		entityplayer.addPotionEffect(new PotionEffect(Potion.resistance.id, 300, 1));
 	}
 
 }

@@ -20,7 +20,7 @@ abstract public class AbstractItem implements IServerItem{
 	 * クラフト素材<br />
 	 * これも継承先で必ず実装が必要
 	 */
-	public Item materialItem;
+	public ItemStack materialItem;
 
 	/**
 	 * 名前を返す
@@ -34,7 +34,7 @@ abstract public class AbstractItem implements IServerItem{
 	 * 素材を返す
 	 */
 	@Override
-	public Item getMaterial(){
+	public ItemStack getMaterial(){
 		return materialItem;
 	}
 
@@ -61,10 +61,9 @@ abstract public class AbstractItem implements IServerItem{
 		changeItem(entityplayer, itemstack, materialItem);
 	}
 
-
 	@Override
-	public void changeItem(EntityPlayer entityplayer, ItemStack minusItem, Item plusItem) {
+	public void changeItem(EntityPlayer entityplayer, ItemStack minusItem, ItemStack plusItem) {
 		--minusItem.stackSize;
-		entityplayer.inventory.addItemStackToInventory(new ItemStack(plusItem, 1, 0));
+		entityplayer.inventory.addItemStackToInventory(plusItem);
 	}
 }

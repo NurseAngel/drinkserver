@@ -17,4 +17,17 @@ public class Forestry extends AbstractServer {
 //		itemList.put(2, new FFMShortMead());
 	}
 
+
+	/**
+	 * FFMが存在するかチェック
+	 */
+	public static boolean isExist() {
+		try {
+			Class.forName("forestry.api.core.ItemInterface");
+			forestry.api.core.ItemInterface.getItem("bucketBiomass").getItem();
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }

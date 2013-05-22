@@ -21,6 +21,11 @@ public class Config {
 	public static int DrinkServerBCID;
 	public static int DrinkServerFFMID;
 	public static int DrinkServerInkID;
+	public static int DrinkServerLxpID;
+	public static int DrinkServerMFR1ID;
+	public static int DrinkServerMFR2ID;
+	public static int DrinkServerTEID;
+	public static int DrinkServerRCID;
 
 	// テスト
 	public static boolean isTest = false;
@@ -44,13 +49,26 @@ public class Config {
 	private void readConfig(Configuration cfg) {
 		int blockIdStart = 1250;
 
+		String commentV = "Vanilla: Water, Milk, Lava";
+		String commentBC = "BuildCraft: Oil, Fuel";
+		String commentFFM = "Forestry: Biomass, Ethanol";
+		String commentInk = "InkMod: Ink";
+		String commentLxp = "Immibis Liquid XP: LXP";
+		String commentMFR = "MineFactoryReloaded: Sludge, Sewage, Mob Essense, MFR Biofuel, Meat, Pinkslime";
+		String commentTE = "ThermalExpansion: Redstone, Glowstone, Ender";
+
 		try {
 			cfg.load();
 			// ブロックID
-			DrinkServerID = cfg.getBlock("DrinkServerID", blockIdStart++).getInt();
-			DrinkServerBCID = cfg.getBlock("DrinkServerBCID", blockIdStart++).getInt();
-			DrinkServerFFMID = cfg.getBlock("DrinkServerFFMID", blockIdStart++).getInt();
-			DrinkServerInkID = cfg.getBlock("DrinkServerInkID", blockIdStart++).getInt();
+			DrinkServerID = cfg.getBlock("DrinkServerID", blockIdStart++, commentV).getInt();
+			DrinkServerBCID = cfg.getBlock("DrinkServerBCID", blockIdStart++, commentBC).getInt();
+			DrinkServerFFMID = cfg.getBlock("DrinkServerFFMID", blockIdStart++, commentFFM).getInt();
+			DrinkServerInkID = cfg.getBlock("DrinkServerInkID", blockIdStart++, commentInk).getInt();
+			DrinkServerLxpID = cfg.getBlock("DrinkServerLxpID", blockIdStart++, commentLxp).getInt();
+			DrinkServerMFR1ID = cfg.getBlock("DrinkServerMFR1ID", blockIdStart++, commentMFR).getInt();
+			DrinkServerMFR2ID = cfg.getBlock("DrinkServerMFR2ID", blockIdStart++).getInt();
+			DrinkServerTEID = cfg.getBlock("DrinkServerTEID", blockIdStart++, commentTE).getInt();
+//			DrinkServerRCID = cfg.getBlock("DrinkServerRCID", blockIdStart++).getInt();
 
 			isTest = cfg.get(Configuration.CATEGORY_GENERAL, "isTest", false, "Always false").getBoolean(false);
 
@@ -84,42 +102,5 @@ public class Config {
 
 	}
 
-	/**
-	 * BuildCraftが存在するかチェック<br />
-	 * FMLCommonHandler/ModContainerあたりから取ってこれそうな気がしないでもないがよくわからん
-	 */
-	public boolean isExistBC() {
-		try {
-			Class.forName("buildcraft.BuildCraftEnergy");
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * FFMが存在するかチェック
-	 */
-	public boolean isExistFFM() {
-		try {
-			Class.forName("forestry.api.core.ItemInterface");
-			forestry.api.core.ItemInterface.getItem("bucketBiomass").getItem();
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * BuildCraftが存在するかチェック
-	 */
-	public boolean isExistInk() {
-		try {
-			Class.forName("ayamitsu.ink.InkMod");
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
 
 }

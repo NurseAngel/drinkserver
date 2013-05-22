@@ -12,7 +12,7 @@ public class Water extends AbstractItem {
 
 	{
 		itemName = "Water";
-		materialItem = Item.bucketWater;
+		materialItem = new ItemStack(Item.bucketWater);
 	}
 
 	/**
@@ -26,7 +26,6 @@ public class Water extends AbstractItem {
 	// ガラス瓶
 	@Override
 	public void onBlockRightClickBottle(World world, EntityPlayer entityplayer, ItemStack itemstack) {
-		--itemstack.stackSize;
-		entityplayer.inventory.addItemStackToInventory(new ItemStack(Item.potion));
+		changeItem(entityplayer, itemstack, new ItemStack(Item.potion));
 	}
 }
