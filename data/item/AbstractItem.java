@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 /**
  * 自販機それぞれのアイテムについて
  */
-abstract public class AbstractItem implements IServerItem{
+abstract public class AbstractItem implements IServerItem {
 
 	/**
 	 * 名前。<br />
@@ -26,7 +26,7 @@ abstract public class AbstractItem implements IServerItem{
 	 * 名前を返す
 	 */
 	@Override
-	public String getName(){
+	public String getName() {
 		return itemName;
 	}
 
@@ -34,10 +34,9 @@ abstract public class AbstractItem implements IServerItem{
 	 * 素材を返す
 	 */
 	@Override
-	public ItemStack getMaterial(){
+	public ItemStack getMaterial() {
 		return materialItem;
 	}
-
 
 	// 素手
 	@Override
@@ -56,14 +55,24 @@ abstract public class AbstractItem implements IServerItem{
 		/**
 		 * デフォは手持ちアイテムを一個減らし、素材アイテムを一個追加する。<br />
 		 * 必要であればOverrideする。<br />
-		 * てかOverrideしたらした側のmaterialItemを読んでくれるのかな?
 		 */
-		changeItem(entityplayer, itemstack, materialItem);
+		changeItem(entityplayer, itemstack, getMaterial());
 	}
 
 	@Override
 	public void changeItem(EntityPlayer entityplayer, ItemStack minusItem, ItemStack plusItem) {
-		--minusItem.stackSize;
-		entityplayer.inventory.addItemStackToInventory(plusItem);
+
+		if (minusItem == null) {
+			return;
+		}
+
+		// +するItemStackはそのまま使うと何故か使えない謎アイテムになってしまうので、いったん作り直す。 個数に0が入ってるとなるっぽい
+		ItemStack hoge = new ItemStack(plusItem.getItem(), 1, plusItem.getItemDamage());
+
+		if (--minusItem.stackSize <= 0) {
+			entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, hoge);
+		} else if (!entityplayer.inventory.addItemStackToInventory(hoge)) {
+			entityplayer.dropPlayerItem(hoge);
+		}
 	}
 }
